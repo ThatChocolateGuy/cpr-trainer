@@ -1,0 +1,14 @@
+var Scene = require('Scene');
+var Textures = require('Textures');
+var Materials = require('Materials');
+var FaceTracking = require('FaceTracking');
+var Animation = require('Animation');
+var Reactive = require('Reactive');
+var TouchGestures = require('TouchGestures');
+const Instruction = require('Instruction');
+var face = FaceTracking.face(0);
+var neck = Scene.root.find('Bone.004');
+var neckMovement = 80;
+neck.transform.rotationX = face.cameraTransform.rotationX.mul(-1.0).sum(0).expSmooth(neckMovement);
+neck.transform.rotationY = face.cameraTransform.rotationZ.mul(1.0).sum(0).expSmooth(neckMovement);
+neck.transform.rotationZ = face.cameraTransform.rotationY.mul(-1.0).sum(0).expSmooth(neckMovement);
